@@ -49,7 +49,7 @@
     [self.veganBeacon startDetecting];
     
     _broadcasting = false;
-    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
+    [self.buttonLabel setText:@"Tap to broadcast Veganness"];
     
 }
 
@@ -67,10 +67,9 @@
 - (void)start {
     // start broadcasting
     
-    
     [self.veganBeacon startBroadcasting];
     _broadcasting = true;
-    [self.veganButton setTitle:@"Broadcast Veganness" forState:UIControlStateNormal];
+    [self.buttonLabel setText:@"Broadcasting"];
 }
 
 - (void)stop {
@@ -78,7 +77,7 @@
     // start broadcasting
     [self.veganBeacon stopBroadcasting];
     _broadcasting = false;
-    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
+    [self.buttonLabel setText:@"Tap to broadcast Veganness"];
 }
 
 // Delegate methods

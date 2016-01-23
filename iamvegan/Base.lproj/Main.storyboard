@@ -18,9 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAf-RJ-Dti">
-                                <rect key="frame" x="261" y="285" width="78" height="30"/>
-                                <state key="normal" title="I Am Vegan"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAf-RJ-Dti">
+                                <rect key="frame" x="257" y="260" width="86" height="79"/>
+                                <state key="normal" image="center.png"/>
                                 <connections>
                                     <action selector="veganAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w9Y-gy-N8N"/>
                                 </connections>
@@ -32,13 +32,21 @@
                                     <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MC0-z1-j3o"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Broadcast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oy-kN-Nne">
+                                <rect key="frame" x="209" y="347" width="182" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.37254901960784315" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EAf-RJ-Dti" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3Cf-YH-acw"/>
                             <constraint firstItem="EAf-RJ-Dti" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WaT-lw-s4K"/>
+                            <constraint firstItem="2Oy-kN-Nne" firstAttribute="top" secondItem="EAf-RJ-Dti" secondAttribute="bottom" constant="8" id="Xga-PU-03n"/>
                             <constraint firstItem="h9f-rx-nDz" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="asN-1n-JA7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h9f-rx-nDz" secondAttribute="bottom" constant="20" id="lk4-Pt-HOu"/>
+                            <constraint firstItem="2Oy-kN-Nne" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wTC-oK-xuP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -50,4 +58,7 @@
             <point key="canvasLocation" x="362" y="247"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="center.png" width="79" height="79"/>
+    </resources>
 </document>

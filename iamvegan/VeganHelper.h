@@ -17,7 +17,6 @@
 #import <MagicalRecord/MagicalRecord.h>
 
 #define SOURCE_BEACON_ID @"ca.lunarluau.iamvegan"
-#define VEGAN_UUID      @"67EADC65-1C39-42CA-95CC-7EF8692B68C8"
 
 
 @interface VeganHelper : NSObject
