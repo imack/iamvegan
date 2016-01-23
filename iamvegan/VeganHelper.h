@@ -23,7 +23,7 @@
 @interface VeganHelper : NSObject
 
 +(void) handleRangedBeacon:(CLBeacon*)beacon;
-+(void) handleUserCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo;
++(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo;
 +(void) clearVegans;
 
 @end

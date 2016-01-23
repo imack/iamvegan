@@ -46,6 +46,7 @@
         _uuid = region.proximityUUID;
         _notifyOnDisplay = region.notifyEntryStateOnDisplay;
         [_locationManager startMonitoringForRegion:region];
+        [_locationManager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
     }
     
     return YES;
@@ -98,16 +99,21 @@
         // If the application is in the foreground, we will notify the user of the region's state via an alert.
         _userInfo = notification.userInfo; //don't like this hack, but it'll do for now
         
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Do you want to checkin to %@",[_userInfo objectForKey:@"name"]] delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@ is a vegan in your presence, would you like to know more?",[_userInfo objectForKey:@"name"]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:nil];
         [sheet addButtonWithTitle:@"Yes"];
-        [sheet addButtonWithTitle:@"No"];
-        [sheet addButtonWithTitle:@"Always"];
-        [sheet addButtonWithTitle:@"Never"];
         
         [sheet showInView: self.window];
     }
 }
 
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        [VeganHelper handleVeganCheckinResponse:buttonIndex for:_userInfo];
+    }
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -14,19 +14,7 @@
 @implementation VeganHelper
 
 
-+(void) promptVegan:(Vegan*)vegan{
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    
-    notification.alertBody = [NSString stringWithFormat:@"%@ is a Vegan and is in your presence", vegan.name];
-    NSDictionary *userInfo = @{@"major":vegan.major, @"minor":vegan.minor, @"name":vegan.name};
-    
-    notification.userInfo = userInfo;
-    
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
-}
-
-+(void) handleUserCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo{
++(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo{
     
     NSArray *vegans = [Vegan MR_findByAttribute:@"major" withValue:[userInfo objectForKey:@"major"]];
     Vegan *vegan  = [vegans objectAtIndex:0];
@@ -78,6 +66,18 @@
     
 }
 
++(void) promptVegan:(Vegan*)vegan{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.alertBody = [NSString stringWithFormat:@"%@ is a Vegan and is in your presence", vegan.name];
+    NSDictionary *userInfo = @{@"major":vegan.major, @"minor":vegan.minor, @"name":vegan.name};
+    
+    notification.userInfo = userInfo;
+    
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    
+}
+
 +(void)clearVegans{
     [Vegan MR_truncateAll];// for testing
 }
@@ -90,19 +90,12 @@
         
         NSDictionary *veganDict = responseObject;
         vegan.name = [veganDict objectForKey:@"name"];
-        vegan.primary = [veganDict objectForKey:@"name"];
-        vegan.secondary = [veganDict objectForKey:@"name"];
-        vegan.date = [veganDict objectForKey:@"name"];
+        vegan.primary = [veganDict objectForKey:@"primary"];
+        vegan.date = [veganDict objectForKey:@"date"];
         
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
         [VeganHelper promptVegan:vegan];
-        
-        //UILocalNotification *notification = [[UILocalNotification alloc] init];
-        
-        //notification.alertBody = [NSString stringWithFormat:@"You are near the vegan %@", vegan.name];
-        //[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
     }];
