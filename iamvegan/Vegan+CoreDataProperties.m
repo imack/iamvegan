@@ -20,6 +20,5 @@
 @dynamic name;
 @dynamic date;
 @dynamic primary;
-@dynamic secondary;
 
 @end

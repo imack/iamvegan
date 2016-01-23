@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *minor;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *primary;
-@property (nullable, nonatomic, retain) NSString *secondary;
 @property (nullable, nonatomic, retain) NSString *date;
 
 @end
