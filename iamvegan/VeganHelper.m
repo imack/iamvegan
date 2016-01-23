@@ -10,6 +10,8 @@
 #import <NotificationCenter/NotificationCenter.h>
 #import "AuthClient.h"
 
+//https://github.com/AltBeacon
+//https://github.com/CharruaLab/AltBeacon
 
 @implementation VeganHelper
 

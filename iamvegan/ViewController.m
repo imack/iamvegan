@@ -11,6 +11,7 @@
 
 @interface ViewController ()<AltBeaconDelegate>{
     CLLocationManager *_locationManager;
+    bool _broadcasting;
     
 }
 @property (strong, nonatomic) AltBeacon* veganBeacon;
@@ -47,17 +48,24 @@
     [self.veganBeacon addDelegate:self];
     [self.veganBeacon startDetecting];
     
+    _broadcasting = false;
+    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
+    
 }
 
 - (void)start {
     // start broadcasting
     [self.veganBeacon startBroadcasting];
+    _broadcasting = true;
+    [self.veganButton setTitle:@"Broadcast Veganness" forState:UIControlStateNormal];
 }
 
 - (void)stop {
     
     // start broadcasting
     [self.veganBeacon stopBroadcasting];
+    _broadcasting = false;
+    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
 }
 
 // Delegate methods
@@ -124,14 +132,13 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-
-    
-}
 
 -(IBAction)veganAction:(id)sender{
-    
+    if (_broadcasting){
+        [self stop];
+    } else {
+        [self start];
+    }
 }
 
 
