@@ -23,6 +23,8 @@
 		28AD7BB11C53544700268483 /* Vegan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BAE1C53544700268483 /* Vegan+CoreDataProperties.m */; };
 		28AD7BB21C53544700268483 /* Vegan.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB01C53544700268483 /* Vegan.m */; };
 		28AD7BB51C53564400268483 /* AuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB41C53564400268483 /* AuthClient.m */; };
+		28AD7BB91C541BE300268483 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7BB71C541BE300268483 /* background@2x.png */; };
+		28AD7BBA1C541BE300268483 /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7BB81C541BE300268483 /* background@3x.png */; };
 		561D384D25477379CEF30A7C /* libPods-iamvegan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */; };
 		9E54C8957B3C810C9B989B78 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB7D66CC6763D50FC9206 /* BuddyBuildSDK.framework */; };
 		EA18283B5750A00CC3A777E0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33C5890DFBEA2DE66F136ED /* CoreTelephony.framework */; };
@@ -53,6 +55,8 @@
 		28AD7BB01C53544700268483 /* Vegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vegan.m; sourceTree = "<group>"; };
 		28AD7BB31C53564400268483 /* AuthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthClient.h; sourceTree = "<group>"; };
 		28AD7BB41C53564400268483 /* AuthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthClient.m; sourceTree = "<group>"; };
+		28AD7BB71C541BE300268483 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		28AD7BB81C541BE300268483 /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
 		2D8D169A1F101FAF3FAC9A49 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iamvegan.release.xcconfig"; path = "Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan.release.xcconfig"; sourceTree = "<group>"; };
 		6C48B75945B9048088E45ED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -103,6 +107,7 @@
 		28AD7B821C534C2B00268483 /* iamvegan */ = {
 			isa = PBXGroup;
 			children = (
+				28AD7BB61C541BD700268483 /* images */,
 				28AD7B9E1C5351E600268483 /* models */,
 				28AD7B861C534C2B00268483 /* AppDelegate.h */,
 				28AD7B871C534C2B00268483 /* AppDelegate.m */,
@@ -139,6 +144,15 @@
 				28AD7BB01C53544700268483 /* Vegan.m */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		28AD7BB61C541BD700268483 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				28AD7BB71C541BE300268483 /* background@2x.png */,
+				28AD7BB81C541BE300268483 /* background@3x.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		9EA5216C6AE1A4B18F6717F1 /* Frameworks */ = {
@@ -237,6 +251,8 @@
 			files = (
 				28AD7B931C534C2B00268483 /* LaunchScreen.storyboard in Resources */,
 				28AD7B901C534C2B00268483 /* Assets.xcassets in Resources */,
+				28AD7BB91C541BE300268483 /* background@2x.png in Resources */,
+				28AD7BBA1C541BE300268483 /* background@3x.png in Resources */,
 				28AD7B8E1C534C2B00268483 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
