@@ -16,6 +16,7 @@
     
 }
 @property (strong, nonatomic) AltBeacon* veganBeacon;
+@property (strong, nonatomic) PulsingHaloLayer *halo;
 
 @end
 
@@ -71,19 +72,19 @@
     [self.veganBeacon startBroadcasting];
     _broadcasting = true;
     [self.buttonLabel setText:@"Broadcasting"];
-    PulsingHaloLayer *halo = [[PulsingHaloLayer alloc] initWithLayerNumber:5];
-    halo.radius = 240.0;
-    halo.animationDuration = 6.0;
-    halo.position = self.view.center;
+    self.halo = [[PulsingHaloLayer alloc] initWithLayerNumber:5];
+    self.halo.radius = 240.0;
+    self.halo.animationDuration = 6.0;
+    self.halo.position = self.view.center;
     UIColor *color = [UIColor colorWithRed:51/250.0
                                      green:85/255.0
                                       blue:0
                                      alpha:0.5];
     
-    halo.backgroundColor = color.CGColor;
+    self.halo.backgroundColor = color.CGColor;
     
     
-    [self.view.layer addSublayer:halo];
+    [self.view.layer addSublayer:self.halo];
 }
 
 - (void)stop {
@@ -92,6 +93,7 @@
     [self.veganBeacon stopBroadcasting];
     _broadcasting = false;
     [self.buttonLabel setText:@"Tap to broadcast Veganness"];
+    self.halo.radius = 0;
 }
 
 // Delegate methods
