@@ -63,11 +63,8 @@
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         [_locationManager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
     }
-    else if(state == CLRegionStateOutside)
-    {
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        [_locationManager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
-        [VeganHelper clearVegans];
+    else if(state == CLRegionStateOutside){
+        NSLog(@"Left a beacon ranging region");
     }
     else
     {
