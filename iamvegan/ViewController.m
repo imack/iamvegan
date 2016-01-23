@@ -7,18 +7,20 @@
 //
 
 #import "ViewController.h"
+#import <AltBeacon/AltBeacon.h>
 
-@interface ViewController (){
+@interface ViewController ()<AltBeaconDelegate>{
     CLLocationManager *_locationManager;
+    bool _broadcasting;
+    
 }
+@property (strong, nonatomic) AltBeacon* veganBeacon;
 
 @end
 
 @implementation ViewController
 
-@synthesize onSwitch;
 @synthesize profileView;
-@synthesize nameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,9 +36,6 @@
 {
     [super viewDidLoad];
     
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    [_locationManager requestAlwaysAuthorization];
     // Do any additional setup after loading the view.
     if(!self.bluetoothManager)
     {
@@ -44,6 +43,74 @@
         self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     }
     [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
+    
+    self.veganBeacon =  [[AltBeacon alloc ]initWithIdentifier:[VeganHelper getUUID]];
+    [self.veganBeacon addDelegate:self];
+    [self.veganBeacon startDetecting];
+    
+    _broadcasting = false;
+    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
+    
+}
+
+- (void)start {
+    // start broadcasting
+    [self.veganBeacon startBroadcasting];
+    _broadcasting = true;
+    [self.veganButton setTitle:@"Broadcast Veganness" forState:UIControlStateNormal];
+}
+
+- (void)stop {
+    
+    // start broadcasting
+    [self.veganBeacon stopBroadcasting];
+    _broadcasting = false;
+    [self.veganButton setTitle:@"Tap to broadcast Veganness" forState:UIControlStateNormal];
+}
+
+// Delegate methods
+- (void)service:(AltBeacon *)service foundDevices:(NSMutableDictionary *)devices {
+    
+    for(NSString *key in devices) {
+        NSNumber * range = [devices objectForKey:key];
+        [VeganHelper handleRangedBeacon:key];
+        
+        /*
+        if (range.intValue == INDetectorRangeUnknown){
+            if ([key  isEqualToString:VEGAN_UUID]){
+                NSLog(@"beacon one");
+            }
+        }else{
+            
+            NSString *result = [self convertToString:range];
+            NSString *beaconName = @"";
+            if ([key  isEqualToString:VEGAN_UUID]){
+                beaconName = @"Beacon one!";
+                NSLog(@"beacon one");
+            }
+        }*/
+    }
+}
+
+- (NSString*) convertToString:(NSNumber *)number {
+    NSString *result = nil;
+    
+    switch(number.intValue) {
+        case INDetectorRangeFar:
+            result = @"Up to 100 meters";
+            break;
+        case INDetectorRangeNear:
+            result = @"Up to 15 meters";
+            break;
+        case INDetectorRangeImmediate:
+            result = @"Up to 5 meters";
+            break;
+            
+        default:
+            result = @"Unknown";
+    }
+    
+    return result;
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -65,11 +132,15 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
 
-    
+-(IBAction)veganAction:(id)sender{
+    if (_broadcasting){
+        [self stop];
+    } else {
+        [self start];
+    }
 }
+
 
 
 -(IBAction)clear:(id)sender{

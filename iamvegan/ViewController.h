@@ -9,13 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "VeganHelper.h"
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate>
+@interface ViewController : UIViewController
 
-
-@property(nonatomic, strong) IBOutlet UISwitch *onSwitch;
 
 @property(nonatomic, strong) IBOutlet UIImageView *profileView;
-@property(nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property(nonatomic, strong) IBOutlet UIButton *veganButton;
 @property(nonatomic, strong) CBCentralManager *bluetoothManager;
 

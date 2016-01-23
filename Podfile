@@ -6,6 +6,7 @@
 target 'iamvegan' do
     pod "MagicalRecord"
     pod "AFNetworking", "~> 1.3"
+    pod "AltBeacon"
 
 end
 

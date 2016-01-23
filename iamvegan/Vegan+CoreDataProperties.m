@@ -15,8 +15,7 @@
 
 @dynamic id;
 @dynamic last_seen;
-@dynamic major;
-@dynamic minor;
+@dynamic uuid;
 @dynamic name;
 @dynamic date;
 @dynamic primary;
