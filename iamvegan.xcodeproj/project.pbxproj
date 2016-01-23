@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AED2F688C3504AFA5F8E7CD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C48B75945B9048088E45ED9 /* AssetsLibrary.framework */; };
+		201ED44DE688BA451920A3FE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D960ABADE6787D970BD68697 /* SystemConfiguration.framework */; };
 		28AD7B851C534C2B00268483 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7B841C534C2B00268483 /* main.m */; };
 		28AD7B881C534C2B00268483 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7B871C534C2B00268483 /* AppDelegate.m */; };
 		28AD7B8B1C534C2B00268483 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7B8A1C534C2B00268483 /* ViewController.m */; };
@@ -22,9 +24,13 @@
 		28AD7BB21C53544700268483 /* Vegan.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB01C53544700268483 /* Vegan.m */; };
 		28AD7BB51C53564400268483 /* AuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB41C53564400268483 /* AuthClient.m */; };
 		561D384D25477379CEF30A7C /* libPods-iamvegan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */; };
+		9E54C8957B3C810C9B989B78 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ECB7D66CC6763D50FC9206 /* BuddyBuildSDK.framework */; };
+		EA18283B5750A00CC3A777E0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33C5890DFBEA2DE66F136ED /* CoreTelephony.framework */; };
+		EA1E602C16134B5F2140B45E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8D169A1F101FAF3FAC9A49 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07ECB7D66CC6763D50FC9206 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		28AD7B801C534C2B00268483 /* iamvegan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iamvegan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28AD7B841C534C2B00268483 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		28AD7B861C534C2B00268483 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,9 +53,13 @@
 		28AD7BB01C53544700268483 /* Vegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vegan.m; sourceTree = "<group>"; };
 		28AD7BB31C53564400268483 /* AuthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthClient.h; sourceTree = "<group>"; };
 		28AD7BB41C53564400268483 /* AuthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthClient.m; sourceTree = "<group>"; };
+		2D8D169A1F101FAF3FAC9A49 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iamvegan.release.xcconfig"; path = "Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan.release.xcconfig"; sourceTree = "<group>"; };
+		6C48B75945B9048088E45ED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		895E6C30310C2E6703C1CFBD /* Pods-iamvegan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iamvegan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan.debug.xcconfig"; sourceTree = "<group>"; };
+		B33C5890DFBEA2DE66F136ED /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iamvegan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D960ABADE6787D970BD68697 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,11 @@
 				28AD7BA91C5353AA00268483 /* CoreLocation.framework in Frameworks */,
 				28AD7BA71C5353A500268483 /* CoreBluetooth.framework in Frameworks */,
 				561D384D25477379CEF30A7C /* libPods-iamvegan.a in Frameworks */,
+				9E54C8957B3C810C9B989B78 /* BuddyBuildSDK.framework in Frameworks */,
+				1AED2F688C3504AFA5F8E7CD /* AssetsLibrary.framework in Frameworks */,
+				EA1E602C16134B5F2140B45E /* CoreText.framework in Frameworks */,
+				EA18283B5750A00CC3A777E0 /* CoreTelephony.framework in Frameworks */,
+				201ED44DE688BA451920A3FE /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +148,11 @@
 				28AD7BA81C5353AA00268483 /* CoreLocation.framework */,
 				28AD7BA61C5353A500268483 /* CoreBluetooth.framework */,
 				BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */,
+				07ECB7D66CC6763D50FC9206 /* BuddyBuildSDK.framework */,
+				6C48B75945B9048088E45ED9 /* AssetsLibrary.framework */,
+				2D8D169A1F101FAF3FAC9A49 /* CoreText.framework */,
+				B33C5890DFBEA2DE66F136ED /* CoreTelephony.framework */,
+				D960ABADE6787D970BD68697 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -394,6 +414,10 @@
 			baseConfigurationReference = 895E6C30310C2E6703C1CFBD /* Pods-iamvegan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iamvegan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lunarluau.iamvegan;
@@ -406,6 +430,10 @@
 			baseConfigurationReference = 5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iamvegan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.lunarluau.iamvegan;

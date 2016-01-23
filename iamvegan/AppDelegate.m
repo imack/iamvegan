@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "VeganHelper.h"
+#import <BuddyBuildSDK/BuddyBuildSDK.h>
 
 @interface AppDelegate (){
     NSDictionary *_userInfo;
@@ -21,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [BuddyBuildSDK setup];
+    
     // Override point for customization after application launch.
     
     [MagicalRecord setupAutoMigratingCoreDataStack];
