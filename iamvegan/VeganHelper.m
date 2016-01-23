@@ -39,9 +39,10 @@
 +(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertBody = [NSString stringWithFormat:@"%@ is a Vegan and is in your presence", vegan.name];
+    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", vegan.name];
+    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", vegan.name];
     NSDictionary *userInfo = @{@"uuid":vegan.uuid, @"name":vegan.name};
-    
+    notification.soundName = UILocalNotificationDefaultSoundName;
     notification.userInfo = userInfo;
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
