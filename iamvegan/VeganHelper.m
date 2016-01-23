@@ -49,10 +49,10 @@
 
 +(void) performCheckin:(Vegan*)vegan{
     
-    NSString *major = [vegan.major stringValue];
+    NSString *uuid = vegan.uuid;
     //NSString *minor = [vegan.minor stringValue];
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", major];
+    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", uuid];
     
     [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -70,7 +70,7 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
     notification.alertBody = [NSString stringWithFormat:@"%@ is a Vegan and is in your presence", vegan.name];
-    NSDictionary *userInfo = @{@"major":vegan.major, @"minor":vegan.minor, @"name":vegan.name};
+    NSDictionary *userInfo = @{@"uuid":vegan.uuid, @"name":vegan.name};
     
     notification.userInfo = userInfo;
     
@@ -84,7 +84,7 @@
 
 +(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", vegan.major];
+    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", vegan.uuid];
     
     [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -102,14 +102,13 @@
 }
 
 
-+(void) handleRangedBeacon:(CLBeacon*)beacon {
-    NSLog(@"Ranged a beacon major:%@ minor:%@", beacon.major, beacon.minor);
++(void) handleRangedBeacon:(NSString*)uuid {
+    NSLog(@"Ranged a beacon uuid:%@ ", uuid);
     
-    NSArray *vegans = [Vegan MR_findByAttribute:@"major" withValue:beacon.major];
+    NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:uuid];
     if ( [vegans count] == 0){
         Vegan *vegan = [Vegan MR_createEntity];
-        vegan.major = beacon.major;
-        vegan.minor = beacon.minor;
+        vegan.uuid = uuid;
         vegan.last_seen = [NSDate date];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         

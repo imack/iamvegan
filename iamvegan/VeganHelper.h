@@ -17,12 +17,12 @@
 #import <MagicalRecord/MagicalRecord.h>
 
 #define SOURCE_BEACON_ID @"ca.lunarluau.iamvegan"
-#define VEGAN_UUID      @"67EADC65-1C39-42CA-95CC-7EF8692B68C7"
+#define VEGAN_UUID      @"67EADC65-1C39-42CA-95CC-7EF8692B68C8"
 
 
 @interface VeganHelper : NSObject
 
-+(void) handleRangedBeacon:(CLBeacon*)beacon;
++(void) handleRangedBeacon:(NSString*)uuid;
 +(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo;
 +(void) clearVegans;
 
