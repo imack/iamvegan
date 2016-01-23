@@ -9,6 +9,7 @@
 #import "VeganHelper.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "AuthClient.h"
+#import <Parse/Parse.h>
 
 //https://github.com/AltBeacon
 //https://github.com/CharruaLab/AltBeacon
@@ -48,21 +49,18 @@
 
 +(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?device_id=%@", vegan.uuid];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:vegan.uuid];
+    PFUser *user = (PFUser *)[query getFirstObject];
     
-    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *veganDict = responseObject;
-        vegan.name = [veganDict objectForKey:@"name"];
-        vegan.primary = [veganDict objectForKey:@"primary"];
-        vegan.date = [veganDict objectForKey:@"date"];
+    if (user){
+        vegan.name = user[PF_USER_NAME];
+        vegan.primary = user[PF_USER_PRIMARY];
         
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
         [VeganHelper promptVegan:vegan];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
+    }
 }
 
 

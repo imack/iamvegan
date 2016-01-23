@@ -17,6 +17,8 @@
 #import <MagicalRecord/MagicalRecord.h>
 
 #define SOURCE_BEACON_ID @"ca.lunarluau.iamvegan"
+#define PF_USER_NAME @"full_name"
+#define PF_USER_PRIMARY @"primary"
 
 
 @interface VeganHelper : NSObject

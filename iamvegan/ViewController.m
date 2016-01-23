@@ -11,6 +11,7 @@
 #import <PulsingHalo/PulsingHaloLayer.h>
 #import "AuthClient.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <Parse/Parse.h>
 
 @interface ViewController ()<AltBeaconDelegate>{
     CLLocationManager *_locationManager;
@@ -158,7 +159,7 @@
     if (_broadcasting){
         [self stop];
     } else {
-        if ([VeganHelper getName]){
+        if ([PFUser currentUser]){
             [self tellServerVegan:[VeganHelper getName]];
         } else {
             UIAlertController *alertController = [UIAlertController
@@ -188,18 +189,54 @@
 
 -(void) tellServerVegan:(NSString*)veganName{
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?device_id=%@&name=%@", [VeganHelper getUUID], [veganName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [PFUser logInWithUsernameInBackground:[VeganHelper getUUID] password:[VeganHelper getUUID] block:^(PFUser *user, NSError *error)
+     {
+         if (user != nil)
+         {
+             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+             
+             NSDictionary *dimensions = @{
+                                          @"user": user.username
+                                          };
+             
+             // Send the dimensions to Parse along with the 'search' event
+             [PFAnalytics trackEvent:@"login_success" dimensions:dimensions];
+             [self start];
+             
+         } else {
+             [self registerServerVegan:veganName];
+         }
+     }];
+}
+
+-(void) registerServerVegan:(NSString*)veganName{
+    
+    PFUser *user = [PFUser user];
+    user.username = [VeganHelper getUUID];
+    user.password = [VeganHelper getUUID];
+    user[PF_USER_NAME] = veganName;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *veganDict = responseObject;
-        [VeganHelper setName:[veganDict objectForKey:@"name"]];
-        [self start];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (error == nil)
+         {
+             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+             
+             NSDictionary *dimensions = @{
+                                          @"user": user.username
+                                          };
+             
+             // Send the dimensions to Parse along with the 'search' event
+             [PFAnalytics trackEvent:@"login_success" dimensions:dimensions];
+             [VeganHelper setName:user[PF_USER_NAME]];
+             [self start];
+             
+         } else {
+             
+         }
+     }];
 }
 
 

@@ -10,6 +10,7 @@
 
 #import "VeganHelper.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()<CLLocationManagerDelegate>{
     NSDictionary *_userInfo;
@@ -35,6 +36,8 @@
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
+    [Parse setApplicationId:@"P5HZyQzcnnDT7QWWlxROnZOq3vaZnWRNRG2GEJhc"
+                  clientKey:@"LYO81dfm0aMTXCf3ZQ4iEvoeQyufgdxwCsCe7icE"];
     
     return YES;
 }
