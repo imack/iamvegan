@@ -11,8 +11,11 @@
 #import "VeganHelper.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
 
-@interface AppDelegate (){
+@interface AppDelegate ()<CLLocationManagerDelegate>{
     NSDictionary *_userInfo;
+    NSUUID *_uuid;
+    BOOL _notifyOnDisplay;
+    CLLocationManager *_locationManager;
 }
 
 @end
@@ -33,8 +36,62 @@
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    
+    _uuid =  [[NSUUID alloc] initWithUUIDString:VEGAN_UUID];
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:SOURCE_BEACON_ID];
+    if(region)
+    {
+        _uuid = region.proximityUUID;
+        _notifyOnDisplay = region.notifyEntryStateOnDisplay;
+        [_locationManager startMonitoringForRegion:region];
+    }
+    
     return YES;
 }
+
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    // A user can transition in or out of a region while the application is not running.
+    // When this happens CoreLocation will launch the application momentarily, call this delegate method
+    // and we will let the user know via a local notification.
+    
+    if(state == CLRegionStateInside)
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [_locationManager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
+    }
+    else if(state == CLRegionStateOutside)
+    {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        [_locationManager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
+        [VeganHelper clearVegans];
+    }
+    else
+    {
+        return;
+    }
+    
+    // If the application is in the foreground, it will get a callback to application:didReceiveLocalNotification:.
+    // If its not, iOS will display the notification to the user.
+}
+
+
+
+-(void) locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+    if ( [beacons count] > 0 ){
+        for (CLBeacon *beacon in beacons){
+            [VeganHelper handleRangedBeacon:beacon];
+            
+        }
+        
+    } else {
+        NSLog(@"Got weird state where no ranged beacons ");
+    }
+}
+
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
