@@ -26,5 +26,7 @@
 +(void) clearVegans;
 +(NSString*)getUUID;
 +(void) testNotification;
++(NSString*) getName;
++(void) setName:(NSString*)username;
 
 @end

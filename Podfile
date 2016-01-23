@@ -8,6 +8,6 @@ target 'iamvegan' do
     pod "AFNetworking", "~> 1.3"
     pod "AltBeacon"
     pod "PulsingHalo", :git => 'git@github.com:shu223/PulsingHalo.git'
-
+    pod 'MBProgressHUD', '~> 0.9.2'
 end
 

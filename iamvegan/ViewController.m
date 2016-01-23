@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import <AltBeacon/AltBeacon.h>
 #import <PulsingHalo/PulsingHaloLayer.h>
+#import "AuthClient.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ViewController ()<AltBeaconDelegate>{
     CLLocationManager *_locationManager;
@@ -156,8 +158,48 @@
     if (_broadcasting){
         [self stop];
     } else {
-        [self start];
+        if ([VeganHelper getName]){
+            [self tellServerVegan:[VeganHelper getName]];
+        } else {
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Sign In"
+                                                  message:nil
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+             {
+                 textField.placeholder = @"Enter your name";
+             }];
+            
+            UIAlertAction *okAction = [UIAlertAction
+                                       actionWithTitle:@"Ok"
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"OK action, %@", alertController.textFields.firstObject.text);
+                                           [self tellServerVegan:alertController.textFields.firstObject.text];
+                                       }];
+            
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }
+}
+
+-(void) tellServerVegan:(NSString*)veganName{
+    
+    NSString *urlString = [NSString stringWithFormat:@"/user?device_id=%@&name=%@", [VeganHelper getUUID], [veganName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *veganDict = responseObject;
+        [VeganHelper setName:[veganDict objectForKey:@"name"]];
+        [self start];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
 

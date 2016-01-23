@@ -111,6 +111,22 @@
     
 }
 
++(NSString*) getName{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"vegan-name"]){
+        return [defaults objectForKey:@"vegan-name"];
+    } else {
+        return nil;
+    }
+}
+
++(void) setName:(NSString*)username{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:username forKey:@"vegan-name"];
+    [defaults synchronize];
+}
+
 +(NSString*)getUUID{
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
