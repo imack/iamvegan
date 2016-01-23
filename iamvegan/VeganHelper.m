@@ -90,6 +90,10 @@
         
         NSDictionary *veganDict = responseObject;
         vegan.name = [veganDict objectForKey:@"name"];
+        vegan.primary = [veganDict objectForKey:@"name"];
+        vegan.secondary = [veganDict objectForKey:@"name"];
+        vegan.date = [veganDict objectForKey:@"name"];
+        
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
         [VeganHelper promptVegan:vegan];
