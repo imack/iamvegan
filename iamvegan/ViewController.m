@@ -12,11 +12,11 @@
 #import "AuthClient.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <Parse/Parse.h>
+#import "UIImage+Resize.h"
 
-@interface ViewController ()<AltBeaconDelegate>{
+@interface ViewController ()<AltBeaconDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
     CLLocationManager *_locationManager;
     bool _broadcasting;
-    
 }
 @property (strong, nonatomic) AltBeacon* veganBeacon;
 @property (strong, nonatomic) PulsingHaloLayer *halo;
@@ -233,8 +233,10 @@
              [VeganHelper setName:user[PF_USER_NAME]];
              [self start];
              
-         } else {
+             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
              
+         } else {
+             [self registerServerVegan:veganName];
          }
      }];
 }
@@ -254,6 +256,43 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType = sourceType;
+    imagePickerController.delegate = self;
+
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    UIImage *resizedImage = [image resizedImageToFitInSize:CGSizeMake(300, 300) scaleIfSmaller:NO];
+    
+    NSData *imageData = UIImageJPEGRepresentation(resizedImage, 0.97);
+    PFFile *profPic = [PFFile fileWithName:@"profile.png" data:imageData];
+    
+    [profPic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        PFUser *user = [PFUser currentUser];
+        [user setObject:profPic forKey:@"ProfilePic"];
+        [user saveInBackground];
+        
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 
 @end
