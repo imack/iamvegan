@@ -18,55 +18,23 @@
 
 +(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo{
     
-    NSArray *vegans = [Vegan MR_findByAttribute:@"major" withValue:[userInfo objectForKey:@"major"]];
+    NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:[userInfo objectForKey:@"uuid"]];
     Vegan *vegan  = [vegans objectAtIndex:0];
     
     switch (buttonIndex) {
         case 0: {
             //yes
-            [VeganHelper performCheckin:vegan];
+            //[VeganHelper performCheckin:vegan];
             break;
             
         }case 1: {
             //no
             break;
         }
-        case 2: {
-            //Always
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            [VeganHelper performCheckin:vegan];
-            break;
-            
-        }
-        case 3: {
-            //never
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            break;
-        }
-            
     }
     
 }
 
-
-+(void) performCheckin:(Vegan*)vegan{
-    
-    NSString *uuid = vegan.uuid;
-    //NSString *minor = [vegan.minor stringValue];
-    
-    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", uuid];
-    
-    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        
-        notification.alertBody = [NSString stringWithFormat:@"You are near the vegan %@", vegan.name];
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
-    }];
-    
-}
 
 +(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -86,7 +54,7 @@
 
 +(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", vegan.uuid];
+    NSString *urlString = [NSString stringWithFormat:@"/user?device_id=%@", vegan.uuid];
     
     [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -121,7 +89,7 @@
         NSTimeInterval interval = [vegan.last_seen timeIntervalSinceNow];
         
         if ( (-1*interval) > 5*60){
-            [VeganHelper performCheckin:(Vegan*)vegan];
+            //[VeganHelper performCheckin:(Vegan*)vegan];
             vegan.last_seen = [NSDate date];
         }
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

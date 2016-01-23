@@ -73,22 +73,13 @@
     
     for(NSString *key in devices) {
         NSNumber * range = [devices objectForKey:key];
-        [VeganHelper handleRangedBeacon:key];
         
-        /*
         if (range.intValue == INDetectorRangeUnknown){
-            if ([key  isEqualToString:VEGAN_UUID]){
-                NSLog(@"beacon one");
-            }
+            NSLog(@"beacon %@ out of range", key);
         }else{
-            
-            NSString *result = [self convertToString:range];
-            NSString *beaconName = @"";
-            if ([key  isEqualToString:VEGAN_UUID]){
-                beaconName = @"Beacon one!";
-                NSLog(@"beacon one");
-            }
-        }*/
+            [VeganHelper handleRangedBeacon:key];
+        }
+        
     }
 }
 
