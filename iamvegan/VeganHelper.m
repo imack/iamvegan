@@ -129,4 +129,18 @@
     
 }
 
++(NSString*)getUUID{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"vegan-uuid"]){
+        return [defaults objectForKey:@"vegan-uuid"];
+    } else {
+        NSString *uuid = [[NSUUID UUID] UUIDString];
+        [defaults setObject:uuid forKey:@"vegan-uuid"];
+        [defaults synchronize];
+        return uuid;
+    }
+}
+
 @end

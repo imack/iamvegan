@@ -43,19 +43,18 @@
     }
     [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
     
-    self.veganBeacon =  [[AltBeacon alloc ]initWithIdentifier:nil];
+    self.veganBeacon =  [[AltBeacon alloc ]initWithIdentifier:[VeganHelper getUUID]];
     [self.veganBeacon addDelegate:self];
     [self.veganBeacon startDetecting];
     
 }
 
-- (void)start:(AltBeacon *)beacon {
-    
+- (void)start {
     // start broadcasting
     [self.veganBeacon startBroadcasting];
 }
 
-- (void)stop:(AltBeacon *)beacon {
+- (void)stop {
     
     // start broadcasting
     [self.veganBeacon stopBroadcasting];
@@ -134,6 +133,7 @@
 -(IBAction)veganAction:(id)sender{
     
 }
+
 
 
 -(IBAction)clear:(id)sender{
