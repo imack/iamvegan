@@ -21,6 +21,8 @@
 
 -(IBAction)clear:(id)sender;
 
+-(IBAction)testNotification:(id)sender;
+
 
 @end
 

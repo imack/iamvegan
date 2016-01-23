@@ -48,6 +48,16 @@
     
 }
 
++(void) testNotification{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.alertBody = @"Jane is a Vegan near you";
+    NSDate *fromnow = [[NSDate date] dateByAddingTimeInterval:5];
+    notification.fireDate = fromnow;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+}
+
 +(void)clearVegans{
     [Vegan MR_truncateAll];// for testing
 }

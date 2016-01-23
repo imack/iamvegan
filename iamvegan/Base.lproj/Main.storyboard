@@ -38,12 +38,21 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.37254901960784315" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-Nb-yWc">
+                                <rect key="frame" x="28" y="562" width="30" height="30"/>
+                                <state key="normal" title="test"/>
+                                <connections>
+                                    <action selector="testNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H8F-WU-jaG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EAf-RJ-Dti" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3Cf-YH-acw"/>
+                            <constraint firstItem="CJo-Nb-yWc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="9Z6-CU-fbg"/>
                             <constraint firstItem="EAf-RJ-Dti" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WaT-lw-s4K"/>
                             <constraint firstItem="2Oy-kN-Nne" firstAttribute="top" secondItem="EAf-RJ-Dti" secondAttribute="bottom" constant="8" id="Xga-PU-03n"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CJo-Nb-yWc" secondAttribute="bottom" constant="16" id="Z35-b5-lUF"/>
                             <constraint firstItem="h9f-rx-nDz" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="asN-1n-JA7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h9f-rx-nDz" secondAttribute="bottom" constant="20" id="lk4-Pt-HOu"/>
                             <constraint firstItem="2Oy-kN-Nne" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wTC-oK-xuP"/>

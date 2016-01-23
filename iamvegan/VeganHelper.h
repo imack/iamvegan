@@ -25,5 +25,6 @@
 +(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo;
 +(void) clearVegans;
 +(NSString*)getUUID;
++(void) testNotification;
 
 @end

@@ -150,6 +150,9 @@
     [VeganHelper clearVegans];
 }
 
+-(IBAction)testNotification:(id)sender{
+    [VeganHelper testNotification];
+}
 
 - (void)didReceiveMemoryWarning
 {
