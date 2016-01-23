@@ -14,7 +14,7 @@
     static AuthClient *__instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL *baseUrl = [NSURL URLWithString:@"http://sigma-kayak-119906.appspot.com/"];
+        NSURL *baseUrl = [NSURL URLWithString:@"https://sigma-kayak-119906.appspot.com"];
         __instance = [[AuthClient alloc] initWithBaseURL:baseUrl];
     });
     return __instance;

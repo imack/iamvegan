@@ -112,28 +112,16 @@
 
 -(void) locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     if ( [beacons count] > 0 ){
-        CLBeacon *nearest = [beacons objectAtIndex:0];
-        
-        [VeganHelper handleRangedBeacon:nearest];
-        [_locationManager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
+        for (CLBeacon *beacon in beacons){
+            [VeganHelper handleRangedBeacon:beacon];
+            
+        }
         
     } else {
         NSLog(@"Got weird state where no ranged beacons ");
     }
 }
 
-
-
--(IBAction)toggleSwitch:(id)sender{
-    if( self.onSwitch.on )
-    {
-    }
-    else
-    {
-        CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[NSUUID UUID] identifier:SOURCE_BEACON_ID];
-        [_locationManager stopMonitoringForRegion:region];
-    }
-}
 
 -(IBAction)clear:(id)sender{
     [VeganHelper clearVegans];

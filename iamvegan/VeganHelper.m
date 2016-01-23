@@ -14,11 +14,11 @@
 @implementation VeganHelper
 
 
-+(void) promptForAuthorization:(Vegan*)location{
++(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertBody = [NSString stringWithFormat:@"Do you want to checkin to %@", location.name];
-    NSDictionary *userInfo = @{@"major":location.major, @"minor":location.minor, @"name":location.name};
+    notification.alertBody = [NSString stringWithFormat:@"%@ is a Vegan and is in your presence", vegan.name];
+    NSDictionary *userInfo = @{@"major":vegan.major, @"minor":vegan.minor, @"name":vegan.name};
     
     notification.userInfo = userInfo;
     
@@ -62,13 +62,11 @@
 +(void) performCheckin:(Vegan*)vegan{
     
     NSString *major = [vegan.major stringValue];
-    NSString *minor = [vegan.minor stringValue];
+    //NSString *minor = [vegan.minor stringValue];
     
-    NSDictionary *dict = @{ @"major": major,
-                           @"minor":minor};
+    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", major];
     
-    
-    [[AuthClient sharedClient] postPath:@"/api/checkin" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         
         notification.alertBody = [NSString stringWithFormat:@"You are near the vegan %@", vegan.name];
@@ -84,23 +82,22 @@
     [Vegan MR_truncateAll];// for testing
 }
 
-+(void) grabNameData:(Vegan*)location  withPrompt:(bool)prompt{
++(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
     
-    NSDictionary *dict = @{@"major": location.major,
-                           @"minor": location.minor};
+    NSString *urlString = [NSString stringWithFormat:@"/user?user_id=%@", vegan.major];
     
-    [[AuthClient sharedClient] getPath:@"/locations/lookup" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dict = responseObject;
-        NSArray *location_dict = [dict objectForKey:@"locations"];
-        if ([location_dict count] == 1){
-            NSDictionary *raw_loc = [location_dict objectAtIndex:0];
-            location.name = [raw_loc objectForKey:@"name"];
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            
-            if (prompt){
-                [VeganHelper promptForAuthorization:location];
-            }
-        }
+    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *veganDict = responseObject;
+        vegan.name = [veganDict objectForKey:@"name"];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        
+        [VeganHelper promptVegan:vegan];
+        
+        //UILocalNotification *notification = [[UILocalNotification alloc] init];
+        
+        //notification.alertBody = [NSString stringWithFormat:@"You are near the vegan %@", vegan.name];
+        //[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
@@ -111,18 +108,8 @@
 +(void) handleRangedBeacon:(CLBeacon*)beacon {
     NSLog(@"Ranged a beacon major:%@ minor:%@", beacon.major, beacon.minor);
     
-    NSArray *locations = [Vegan MR_findByAttribute:@"major" withValue:beacon.major];
-    if ( [locations count] > 0){
-        Vegan *vegan = [locations objectAtIndex:0];
-        NSTimeInterval interval = [vegan.last_seen timeIntervalSinceNow];
-        
-        if ( (-1*interval) > 5*60){
-            [VeganHelper performCheckin:(Vegan*)vegan];
-            vegan.last_seen = [NSDate date];
-        }
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        
-    } else {
+    NSArray *vegans = [Vegan MR_findByAttribute:@"major" withValue:beacon.major];
+    if ( [vegans count] == 0){
         Vegan *vegan = [Vegan MR_createEntity];
         vegan.major = beacon.major;
         vegan.minor = beacon.minor;
@@ -130,6 +117,16 @@
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
         [VeganHelper grabNameData:vegan withPrompt:true];
+        
+    } else {
+        Vegan *vegan = [vegans objectAtIndex:0];
+        NSTimeInterval interval = [vegan.last_seen timeIntervalSinceNow];
+        
+        if ( (-1*interval) > 5*60){
+            [VeganHelper performCheckin:(Vegan*)vegan];
+            vegan.last_seen = [NSDate date];
+        }
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }
     
     
