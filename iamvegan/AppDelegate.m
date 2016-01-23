@@ -58,7 +58,22 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
-        [VeganHelper handleVeganCheckinResponse:buttonIndex for:_userInfo];
+        NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:[_userInfo objectForKey:@"uuid"]];
+        Vegan *vegan  = [vegans objectAtIndex:0];
+        
+        switch (buttonIndex) {
+            case 0: {
+                //yes
+                //[VeganHelper performCheckin:vegan];
+                
+                break;
+                
+            }case 1: {
+                //no
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.vrg.org/nutshell/vegan.htm"]];
+                break;
+            }
+        }
     }
     
 }

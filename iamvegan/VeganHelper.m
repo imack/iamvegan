@@ -16,25 +16,6 @@
 @implementation VeganHelper
 
 
-+(void) handleVeganCheckinResponse:(NSInteger)buttonIndex for:(NSDictionary*)userInfo{
-    
-    NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:[userInfo objectForKey:@"uuid"]];
-    Vegan *vegan  = [vegans objectAtIndex:0];
-    
-    switch (buttonIndex) {
-        case 0: {
-            //yes
-            //[VeganHelper performCheckin:vegan];
-            break;
-            
-        }case 1: {
-            //no
-            break;
-        }
-    }
-    
-}
-
 
 +(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
