@@ -16,9 +16,11 @@
 
 @property(nonatomic, strong) IBOutlet UIImageView *profileView;
 @property(nonatomic, strong) IBOutlet UILabel *nameLabel;
+@property(nonatomic, strong) IBOutlet UIButton *veganButton;
 @property(nonatomic, strong) CBCentralManager *bluetoothManager;
 
--(IBAction)toggleSwitch:(id)sender;
+-(IBAction)veganAction:(id)sender;
+
 -(IBAction)clear:(id)sender;
 
 

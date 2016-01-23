@@ -70,7 +70,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     
-    
     _uuid =  [[NSUUID alloc] initWithUUIDString:VEGAN_UUID];
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:SOURCE_BEACON_ID];
     if(region)
