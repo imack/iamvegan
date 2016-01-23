@@ -7,6 +7,7 @@ target 'iamvegan' do
     pod "MagicalRecord"
     pod "AFNetworking", "~> 1.3"
     pod "AltBeacon"
+    pod "PulsingHalo", :git => 'git@github.com:shu223/PulsingHalo.git'
 
 end
 

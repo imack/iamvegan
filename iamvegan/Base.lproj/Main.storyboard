@@ -59,6 +59,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonLabel" destination="2Oy-kN-Nne" id="tew-ay-Y5Z"/>
                         <outlet property="veganButton" destination="EAf-RJ-Dti" id="N1o-8v-70d"/>
                     </connections>
                 </viewController>

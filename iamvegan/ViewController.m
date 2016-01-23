@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <AltBeacon/AltBeacon.h>
+#import <PulsingHalo/PulsingHaloLayer.h>
 
 @interface ViewController ()<AltBeaconDelegate>{
     CLLocationManager *_locationManager;
@@ -70,6 +71,19 @@
     [self.veganBeacon startBroadcasting];
     _broadcasting = true;
     [self.buttonLabel setText:@"Broadcasting"];
+    PulsingHaloLayer *halo = [[PulsingHaloLayer alloc] initWithLayerNumber:5];
+    halo.radius = 240.0;
+    halo.animationDuration = 6.0;
+    halo.position = self.view.center;
+    UIColor *color = [UIColor colorWithRed:51/250.0
+                                     green:85/255.0
+                                      blue:0
+                                     alpha:0.5];
+    
+    halo.backgroundColor = color.CGColor;
+    
+    
+    [self.view.layer addSublayer:halo];
 }
 
 - (void)stop {

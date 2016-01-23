@@ -51,9 +51,11 @@
 +(void) testNotification{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertBody = @"Jane is a Vegan near you";
+    notification.alertTitle = @"Jane is a Vegan";
+    notification.alertBody = @"A Vegan is near you";
     NSDate *fromnow = [[NSDate date] dateByAddingTimeInterval:5];
     notification.fireDate = fromnow;
+    notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
 }
