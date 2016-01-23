@@ -47,20 +47,38 @@
     [Vegan MR_truncateAll];// for testing
 }
 
-+(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
++(void) grabNameData:(NSString*)uuid  withPrompt:(bool)prompt{
     
     PFQuery *query = [PFUser query];
-    [query whereKey:@"username" equalTo:vegan.uuid];
-    PFUser *user = (PFUser *)[query getFirstObject];
+    [query whereKey:@"username" equalTo:uuid];
     
-    if (user){
-        vegan.name = user[PF_USER_NAME];
-        vegan.primary = user[PF_USER_PRIMARY];
-        
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        
-        [VeganHelper promptVegan:vegan];
-    }
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (object){
+            PFUser *user = (PFUser *)object;
+            
+            Vegan *vegan = [Vegan MR_createEntity];
+            vegan.uuid = uuid;
+            vegan.last_seen = [NSDate date];
+            vegan.name = user[PF_USER_NAME];
+            vegan.primary = user[PF_USER_PRIMARY];
+            [VeganHelper promptVegan:vegan];
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                //nooop
+            }];
+            
+        } else {
+            //error state
+            Vegan *vegan = [Vegan MR_createEntity];
+            vegan.uuid = uuid;
+            vegan.last_seen = [NSDate date];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                //nooop
+            }];
+        }
+    }];
+    
+
 }
 
 
@@ -69,12 +87,8 @@
     
     NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:uuid];
     if ( [vegans count] == 0){
-        Vegan *vegan = [Vegan MR_createEntity];
-        vegan.uuid = uuid;
-        vegan.last_seen = [NSDate date];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
-        [VeganHelper grabNameData:vegan withPrompt:true];
+        [VeganHelper grabNameData:uuid withPrompt:true];
         
     } else {
         Vegan *vegan = [vegans objectAtIndex:0];
