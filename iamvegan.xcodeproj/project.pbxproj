@@ -13,6 +13,15 @@
 		28AD7B8E1C534C2B00268483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7B8C1C534C2B00268483 /* Main.storyboard */; };
 		28AD7B901C534C2B00268483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7B8F1C534C2B00268483 /* Assets.xcassets */; };
 		28AD7B931C534C2B00268483 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7B911C534C2B00268483 /* LaunchScreen.storyboard */; };
+		28AD7B9D1C5351C400268483 /* VeganHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7B9C1C5351C400268483 /* VeganHelper.m */; };
+		28AD7BA41C53527D00268483 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BA21C53527D00268483 /* Model.xcdatamodeld */; };
+		28AD7BA71C5353A500268483 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28AD7BA61C5353A500268483 /* CoreBluetooth.framework */; };
+		28AD7BA91C5353AA00268483 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28AD7BA81C5353AA00268483 /* CoreLocation.framework */; };
+		28AD7BAB1C5353B000268483 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28AD7BAA1C5353B000268483 /* CoreData.framework */; };
+		28AD7BB11C53544700268483 /* Vegan+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BAE1C53544700268483 /* Vegan+CoreDataProperties.m */; };
+		28AD7BB21C53544700268483 /* Vegan.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB01C53544700268483 /* Vegan.m */; };
+		28AD7BB51C53564400268483 /* AuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AD7BB41C53564400268483 /* AuthClient.m */; };
+		561D384D25477379CEF30A7C /* libPods-iamvegan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,21 @@
 		28AD7B8F1C534C2B00268483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28AD7B921C534C2B00268483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28AD7B941C534C2B00268483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28AD7B9B1C5351C400268483 /* VeganHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VeganHelper.h; sourceTree = "<group>"; };
+		28AD7B9C1C5351C400268483 /* VeganHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VeganHelper.m; sourceTree = "<group>"; };
+		28AD7BA31C53527D00268483 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		28AD7BA61C5353A500268483 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		28AD7BA81C5353AA00268483 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		28AD7BAA1C5353B000268483 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		28AD7BAD1C53544700268483 /* Vegan+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Vegan+CoreDataProperties.h"; sourceTree = "<group>"; };
+		28AD7BAE1C53544700268483 /* Vegan+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Vegan+CoreDataProperties.m"; sourceTree = "<group>"; };
+		28AD7BAF1C53544700268483 /* Vegan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vegan.h; sourceTree = "<group>"; };
+		28AD7BB01C53544700268483 /* Vegan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vegan.m; sourceTree = "<group>"; };
+		28AD7BB31C53564400268483 /* AuthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthClient.h; sourceTree = "<group>"; };
+		28AD7BB41C53564400268483 /* AuthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthClient.m; sourceTree = "<group>"; };
+		5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iamvegan.release.xcconfig"; path = "Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan.release.xcconfig"; sourceTree = "<group>"; };
+		895E6C30310C2E6703C1CFBD /* Pods-iamvegan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iamvegan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan.debug.xcconfig"; sourceTree = "<group>"; };
+		BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iamvegan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AD7BAB1C5353B000268483 /* CoreData.framework in Frameworks */,
+				28AD7BA91C5353AA00268483 /* CoreLocation.framework in Frameworks */,
+				28AD7BA71C5353A500268483 /* CoreBluetooth.framework in Frameworks */,
+				561D384D25477379CEF30A7C /* libPods-iamvegan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +72,8 @@
 			children = (
 				28AD7B821C534C2B00268483 /* iamvegan */,
 				28AD7B811C534C2B00268483 /* Products */,
+				AF50F3F85C6F2907F19766DD /* Pods */,
+				9EA5216C6AE1A4B18F6717F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +88,7 @@
 		28AD7B821C534C2B00268483 /* iamvegan */ = {
 			isa = PBXGroup;
 			children = (
+				28AD7B9E1C5351E600268483 /* models */,
 				28AD7B861C534C2B00268483 /* AppDelegate.h */,
 				28AD7B871C534C2B00268483 /* AppDelegate.m */,
 				28AD7B891C534C2B00268483 /* ViewController.h */,
@@ -66,7 +97,12 @@
 				28AD7B8F1C534C2B00268483 /* Assets.xcassets */,
 				28AD7B911C534C2B00268483 /* LaunchScreen.storyboard */,
 				28AD7B941C534C2B00268483 /* Info.plist */,
+				28AD7BA21C53527D00268483 /* Model.xcdatamodeld */,
 				28AD7B831C534C2B00268483 /* Supporting Files */,
+				28AD7B9B1C5351C400268483 /* VeganHelper.h */,
+				28AD7B9C1C5351C400268483 /* VeganHelper.m */,
+				28AD7BB31C53564400268483 /* AuthClient.h */,
+				28AD7BB41C53564400268483 /* AuthClient.m */,
 			);
 			path = iamvegan;
 			sourceTree = "<group>";
@@ -79,6 +115,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		28AD7B9E1C5351E600268483 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				28AD7BAD1C53544700268483 /* Vegan+CoreDataProperties.h */,
+				28AD7BAE1C53544700268483 /* Vegan+CoreDataProperties.m */,
+				28AD7BAF1C53544700268483 /* Vegan.h */,
+				28AD7BB01C53544700268483 /* Vegan.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		9EA5216C6AE1A4B18F6717F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28AD7BAA1C5353B000268483 /* CoreData.framework */,
+				28AD7BA81C5353AA00268483 /* CoreLocation.framework */,
+				28AD7BA61C5353A500268483 /* CoreBluetooth.framework */,
+				BE39FBCC4DEED65E072EEAB0 /* libPods-iamvegan.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF50F3F85C6F2907F19766DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				895E6C30310C2E6703C1CFBD /* Pods-iamvegan.debug.xcconfig */,
+				5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +153,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28AD7B971C534C2B00268483 /* Build configuration list for PBXNativeTarget "iamvegan" */;
 			buildPhases = (
+				4494EE29A4E3877EE1B9BA59 /* Check Pods Manifest.lock */,
 				28AD7B7C1C534C2B00268483 /* Sources */,
 				28AD7B7D1C534C2B00268483 /* Frameworks */,
 				28AD7B7E1C534C2B00268483 /* Resources */,
+				EFD3B520C7758468C91E63A3 /* Embed Pods Frameworks */,
+				A834C2C61C1490FD901B8678 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -153,14 +223,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4494EE29A4E3877EE1B9BA59 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A834C2C61C1490FD901B8678 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFD3B520C7758468C91E63A3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iamvegan/Pods-iamvegan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		28AD7B7C1C534C2B00268483 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AD7BB51C53564400268483 /* AuthClient.m in Sources */,
 				28AD7B8B1C534C2B00268483 /* ViewController.m in Sources */,
+				28AD7BB11C53544700268483 /* Vegan+CoreDataProperties.m in Sources */,
+				28AD7BB21C53544700268483 /* Vegan.m in Sources */,
+				28AD7B9D1C5351C400268483 /* VeganHelper.m in Sources */,
 				28AD7B881C534C2B00268483 /* AppDelegate.m in Sources */,
 				28AD7B851C534C2B00268483 /* main.m in Sources */,
+				28AD7BA41C53527D00268483 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +391,7 @@
 		};
 		28AD7B981C534C2B00268483 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 895E6C30310C2E6703C1CFBD /* Pods-iamvegan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iamvegan/Info.plist;
@@ -279,6 +403,7 @@
 		};
 		28AD7B991C534C2B00268483 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A1A59E9457C53BE660F93A2 /* Pods-iamvegan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iamvegan/Info.plist;
@@ -307,8 +432,23 @@
 				28AD7B991C534C2B00268483 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		28AD7BA21C53527D00268483 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28AD7BA31C53527D00268483 /* Model.xcdatamodel */,
+			);
+			currentVersion = 28AD7BA31C53527D00268483 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = ../Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 28AD7B781C534C2B00268483 /* Project object */;
 }

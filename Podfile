@@ -4,6 +4,8 @@
 # use_frameworks!
 
 target 'iamvegan' do
+    pod "MagicalRecord"
+    pod "AFNetworking", "~> 1.3"
 
 end
 
