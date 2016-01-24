@@ -83,16 +83,12 @@
         
         switch (buttonIndex) {
             case 1: {
-                
+                UINavigationController* nav = (UINavigationController*)self.window.rootViewController;
                 UIStoryboard *storyboard =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                
                 ProfileViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
                 profileViewController.vegan = currentVegan;
-                UIView* contentView = profileViewController.view;
-                contentView.frame = CGRectMake(0.0, 0.0, 300.0, 200.0);
                 
-                KLCPopup* popup = [KLCPopup popupWithContentView:contentView];
-                [popup show];
+                [nav pushViewController:profileViewController animated:true];
                 //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.vrg.org/nutshell/vegan.htm"]];
                 break;
             }
