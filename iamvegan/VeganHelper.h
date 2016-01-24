@@ -19,6 +19,7 @@
 #define SOURCE_BEACON_ID @"ca.lunarluau.iamvegan"
 #define PF_USER_NAME @"full_name"
 #define PF_USER_PRIMARY @"primary"
+#define PF_USER_PROFILE @"ProfilePic"
 
 
 @interface VeganHelper : NSObject

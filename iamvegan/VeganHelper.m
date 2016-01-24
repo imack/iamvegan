@@ -18,17 +18,16 @@
 
 
 
-+(void) promptVegan:(Vegan*)vegan{
++(void) promptVegan:(PFUser*)user{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", vegan.name];
-    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", vegan.name];
-    NSDictionary *userInfo = @{@"uuid":vegan.uuid, @"name":vegan.name};
+    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", user[PF_USER_NAME]];
+    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", user[PF_USER_NAME]];
+    NSDictionary *userInfo = @{@"uuid":user.username, @"name":user[PF_USER_NAME]};
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.userInfo = userInfo;
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
 }
 
 +(void) testNotification{
@@ -61,7 +60,7 @@
             vegan.last_seen = [NSDate date];
             vegan.name = user[PF_USER_NAME];
             vegan.primary = user[PF_USER_PRIMARY];
-            [VeganHelper promptVegan:vegan];
+            [VeganHelper promptVegan:user];
             
             [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
                 //nooop

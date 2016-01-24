@@ -280,7 +280,7 @@
     [profPic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
         PFUser *user = [PFUser currentUser];
-        [user setObject:profPic forKey:@"ProfilePic"];
+        [user setObject:profPic forKey:PF_USER_PROFILE];
         [user saveInBackground];
         
     }];
