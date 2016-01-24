@@ -21,7 +21,8 @@
 +(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertTitle =[NSString stringWithFormat:@"A Vegan is Nearby"];
+    notification.alertTitle =@"A Vegan is Nearby";
+    notification.alertBody =@"A Vegan is Nearby";
     NSDictionary *userInfo = @{@"uuid":vegan.uuid};
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.userInfo = userInfo;
@@ -33,8 +34,11 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
     notification.alertTitle = @"A Vegan is Nearby";
+    notification.alertBody =@"A Vegan is Nearby";
     NSDate *fromnow = [[NSDate date] dateByAddingTimeInterval:5];
+    NSDictionary *userInfo = @{@"uuid":@"B0D60303-A421-4DF1-8C1B-E8B629F058A6"};
     notification.fireDate = fromnow;
+    notification.userInfo = userInfo;
     notification.soundName = UILocalNotificationDefaultSoundName;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
