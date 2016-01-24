@@ -75,7 +75,7 @@
                 ProfileViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
                 profileViewController.uuid = [_userInfo objectForKey:@"uuid"];
                 UIView* contentView = profileViewController.view;
-                contentView.frame = CGRectMake(0.0, 0.0, 300.0, 300.0);
+                contentView.frame = CGRectMake(0.0, 0.0, 300.0, 200.0);
                 
                 KLCPopup* popup = [KLCPopup popupWithContentView:contentView];
                 [popup show];

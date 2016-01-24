@@ -92,8 +92,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pMT-Xw-GD2">
-                                <rect key="frame" x="153" y="59" width="427" height="81"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMT-Xw-GD2">
+                                <rect key="frame" x="153" y="59" width="427" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="8Lt-4W-ist"/>
@@ -105,6 +105,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="chS-f1-Lcp" firstAttribute="top" secondItem="pMT-Xw-GD2" secondAttribute="bottom" constant="8" id="3KS-EX-yAq"/>
                             <constraint firstItem="llw-0i-woF" firstAttribute="trailing" secondItem="iiP-3n-mVc" secondAttribute="trailingMargin" id="8B4-41-tB5"/>
                             <constraint firstItem="llw-0i-woF" firstAttribute="leading" secondItem="Q17-vC-mY8" secondAttribute="trailing" constant="13" id="ETd-tt-xzn"/>
                             <constraint firstItem="Q17-vC-mY8" firstAttribute="leading" secondItem="iiP-3n-mVc" secondAttribute="leadingMargin" id="G0y-Ia-iWw"/>
@@ -116,6 +117,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bioText" destination="pMT-Xw-GD2" id="Upx-AW-jW2"/>
                         <outlet property="nameLabel" destination="llw-0i-woF" id="pCu-UB-jkn"/>
                         <outlet property="profileView" destination="Q17-vC-mY8" id="D8m-a5-oix"/>
                     </connections>
