@@ -49,10 +49,6 @@
 }
 
 +(void) grabNameData:(NSString*)uuid  withPrompt:(bool)prompt{
-    
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"username" equalTo:uuid];
-    
     Vegan *vegan = [Vegan MR_createEntity];
     vegan.uuid = uuid;
     vegan.last_seen = [NSDate date];
