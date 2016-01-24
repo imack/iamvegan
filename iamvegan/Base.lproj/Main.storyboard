@@ -27,7 +27,9 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9f-rx-nDz">
                                 <rect key="frame" x="546" y="550" width="34" height="30"/>
-                                <state key="normal" title="clear"/>
+                                <state key="normal" title="clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MC0-z1-j3o"/>
                                 </connections>
@@ -40,7 +42,9 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJo-Nb-yWc">
                                 <rect key="frame" x="28" y="562" width="30" height="30"/>
-                                <state key="normal" title="test"/>
+                                <state key="normal" title="test">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="testNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H8F-WU-jaG"/>
                                 </connections>
