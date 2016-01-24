@@ -12,7 +12,6 @@
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
 #import <Parse/Parse.h>
 #import "ProfileViewController.h"
-#import <KLCPopup/KLCPopup.h>
 
 @interface AppDelegate ()<CLLocationManagerDelegate>{
     NSDictionary *_userInfo;

@@ -8,7 +8,7 @@
 
 #import "ProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import <UIImage+Additions.h>
 @interface ProfileViewController ()
 
 @end
@@ -28,10 +28,14 @@
         [pictureFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             if (!error){
                 UIImage *profileImage = [UIImage imageWithData:data];
+                profileImage = [self imageByCroppingImage:profileImage toSize:CGSizeMake(200, 200)];
+                profileImage = [profileImage add_imageWithRoundedBounds];
+                
                 [self.profileView setImage:profileImage];
-                self.profileView.layer.cornerRadius = profileImage.size.width / 2;
-                self.profileView.layer.masksToBounds = YES;
-                self.profileView.layer.borderWidth = 3.0f;
+                
+                self.profileView.layer.cornerRadius = self.profileView.frame.size.width / 2;
+                self.profileView.clipsToBounds = YES;
+                self.profileView.layer.borderWidth = 6.0;
                 
                 UIColor *color = [UIColor colorWithRed:51/250.0
                                                  green:85/255.0
@@ -42,6 +46,24 @@
         }];
     }
     
+}
+
+- (UIImage *)imageByCroppingImage:(UIImage *)image toSize:(CGSize)size
+{
+    // not equivalent to image.size (which depends on the imageOrientation)!
+    double refWidth = CGImageGetWidth(image.CGImage);
+    double refHeight = CGImageGetHeight(image.CGImage);
+    
+    double x = (refWidth - size.width) / 2.0;
+    double y = (refHeight - size.height) / 2.0;
+    
+    CGRect cropRect = CGRectMake(x, y, size.height, size.width);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef scale:0.0 orientation:UIImageOrientationUp];
+    CGImageRelease(imageRef);
+    
+    return cropped;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
