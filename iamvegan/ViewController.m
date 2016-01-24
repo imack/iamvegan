@@ -10,7 +10,7 @@
 #import <AltBeacon/AltBeacon.h>
 #import <PulsingHalo/PulsingHaloLayer.h>
 #import "AuthClient.h"
-#import <MBProgressHUD/MBProgressHUD.h>
+#import <JGProgressHUD/JGProgressHUD.h>
 #import <Parse/Parse.h>
 #import "UIImage+Resize.h"
 
@@ -189,12 +189,14 @@
 
 -(void) tellServerVegan:(NSString*)veganName{
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+    [HUD showInView:self.view];
     [PFUser logInWithUsernameInBackground:[VeganHelper getUUID] password:[VeganHelper getUUID] block:^(PFUser *user, NSError *error)
      {
          if (user != nil)
          {
-             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+             [HUD dismiss];
              
              NSDictionary *dimensions = @{
                                           @"user": user.username
@@ -217,12 +219,13 @@
     user.password = [VeganHelper getUUID];
     user[PF_USER_NAME] = veganName;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+    [HUD showInView:self.view];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
          if (error == nil)
          {
-             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+             [HUD dismiss];
              
              NSDictionary *dimensions = @{
                                           @"user": user.username
