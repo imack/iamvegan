@@ -67,6 +67,63 @@
             </objects>
             <point key="canvasLocation" x="362" y="247"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="3xN-Fx-f60">
+            <objects>
+                <viewController storyboardIdentifier="profileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wz6-Sb-12w" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0bA-oa-JSd"/>
+                        <viewControllerLayoutGuide type="bottom" id="chS-f1-Lcp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iiP-3n-mVc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q17-vC-mY8">
+                                <rect key="frame" x="20" y="20" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="Ja0-Ny-gaV"/>
+                                    <constraint firstAttribute="width" constant="120" id="ZeK-G1-kB6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llw-0i-woF">
+                                <rect key="frame" x="153" y="20" width="427" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pMT-Xw-GD2">
+                                <rect key="frame" x="153" y="59" width="427" height="81"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="8Lt-4W-ist"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="llw-0i-woF" firstAttribute="trailing" secondItem="iiP-3n-mVc" secondAttribute="trailingMargin" id="8B4-41-tB5"/>
+                            <constraint firstItem="llw-0i-woF" firstAttribute="leading" secondItem="Q17-vC-mY8" secondAttribute="trailing" constant="13" id="ETd-tt-xzn"/>
+                            <constraint firstItem="Q17-vC-mY8" firstAttribute="leading" secondItem="iiP-3n-mVc" secondAttribute="leadingMargin" id="G0y-Ia-iWw"/>
+                            <constraint firstItem="pMT-Xw-GD2" firstAttribute="leading" secondItem="Q17-vC-mY8" secondAttribute="trailing" constant="13" id="OSP-P2-Ijh"/>
+                            <constraint firstItem="pMT-Xw-GD2" firstAttribute="top" secondItem="llw-0i-woF" secondAttribute="bottom" constant="8" id="XSV-D0-pHV"/>
+                            <constraint firstItem="pMT-Xw-GD2" firstAttribute="trailing" secondItem="iiP-3n-mVc" secondAttribute="trailingMargin" id="a2S-Tk-oiw"/>
+                            <constraint firstItem="Q17-vC-mY8" firstAttribute="top" secondItem="0bA-oa-JSd" secondAttribute="bottom" id="skx-nZ-jpj"/>
+                            <constraint firstItem="llw-0i-woF" firstAttribute="top" secondItem="0bA-oa-JSd" secondAttribute="bottom" id="ymb-Hd-a6C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="llw-0i-woF" id="pCu-UB-jkn"/>
+                        <outlet property="profileView" destination="Q17-vC-mY8" id="D8m-a5-oix"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="79K-9e-H9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="77"/>
+        </scene>
     </scenes>
     <resources>
         <image name="center.png" width="79" height="79"/>

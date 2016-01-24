@@ -9,6 +9,7 @@
 #import "VeganHelper.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "AuthClient.h"
+#import <Parse/Parse.h>
 
 //https://github.com/AltBeacon
 //https://github.com/CharruaLab/AltBeacon
@@ -17,17 +18,16 @@
 
 
 
-+(void) promptVegan:(Vegan*)vegan{
++(void) promptVegan:(PFUser*)user{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", vegan.name];
-    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", vegan.name];
-    NSDictionary *userInfo = @{@"uuid":vegan.uuid, @"name":vegan.name};
+    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", user[PF_USER_NAME]];
+    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", user[PF_USER_NAME]];
+    NSDictionary *userInfo = @{@"uuid":user.username, @"name":user[PF_USER_NAME]};
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.userInfo = userInfo;
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
 }
 
 +(void) testNotification{
@@ -46,23 +46,38 @@
     [Vegan MR_truncateAll];// for testing
 }
 
-+(void) grabNameData:(Vegan*)vegan  withPrompt:(bool)prompt{
++(void) grabNameData:(NSString*)uuid  withPrompt:(bool)prompt{
     
-    NSString *urlString = [NSString stringWithFormat:@"/user?device_id=%@", vegan.uuid];
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:uuid];
     
-    [[AuthClient sharedClient] getPath:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *veganDict = responseObject;
-        vegan.name = [veganDict objectForKey:@"name"];
-        vegan.primary = [veganDict objectForKey:@"primary"];
-        vegan.date = [veganDict objectForKey:@"date"];
-        
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-        
-        [VeganHelper promptVegan:vegan];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (object){
+            PFUser *user = (PFUser *)object;
+            
+            Vegan *vegan = [Vegan MR_createEntity];
+            vegan.uuid = uuid;
+            vegan.last_seen = [NSDate date];
+            vegan.name = user[PF_USER_NAME];
+            vegan.primary = user[PF_USER_PRIMARY];
+            [VeganHelper promptVegan:user];
+            
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                //nooop
+            }];
+            
+        } else {
+            //error state
+            Vegan *vegan = [Vegan MR_createEntity];
+            vegan.uuid = uuid;
+            vegan.last_seen = [NSDate date];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                //nooop
+            }];
+        }
     }];
+    
+
 }
 
 
@@ -71,12 +86,8 @@
     
     NSArray *vegans = [Vegan MR_findByAttribute:@"uuid" withValue:uuid];
     if ( [vegans count] == 0){
-        Vegan *vegan = [Vegan MR_createEntity];
-        vegan.uuid = uuid;
-        vegan.last_seen = [NSDate date];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
-        [VeganHelper grabNameData:vegan withPrompt:true];
+        [VeganHelper grabNameData:uuid withPrompt:true];
         
     } else {
         Vegan *vegan = [vegans objectAtIndex:0];
