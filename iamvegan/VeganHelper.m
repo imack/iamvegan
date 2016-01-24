@@ -51,21 +51,15 @@
     PFQuery *query = [PFUser query];
     [query whereKey:@"username" equalTo:uuid];
     
+    Vegan *vegan = [Vegan MR_createEntity];
+    vegan.uuid = uuid;
+    vegan.last_seen = [NSDate date];
+    
+    
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (object){
             PFUser *user = (PFUser *)object;
-            
-            Vegan *vegan = [Vegan MR_createEntity];
-            vegan.uuid = uuid;
-            vegan.last_seen = [NSDate date];
-            vegan.name = user[PF_USER_NAME];
-            vegan.primary = user[PF_USER_PRIMARY];
             [VeganHelper promptVegan:user];
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-                //nooop
-            }];
-            
         } else {
             //error state
             Vegan *vegan = [Vegan MR_createEntity];
@@ -75,6 +69,10 @@
                 //nooop
             }];
         }
+    }];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        //nooop
     }];
     
 
