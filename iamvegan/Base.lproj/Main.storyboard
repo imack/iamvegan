@@ -113,14 +113,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ec4-pQ-iSo">
                                 <rect key="frame" x="0.0" y="286" width="600" height="314"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="I'm a vegan" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9n-mw-qOq">
-                                        <rect key="frame" x="30" y="89" width="562" height="217"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeB-O4-2OF">
+                                        <rect key="frame" x="30" y="89" width="540" height="225"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfl-gG-OHE">
-                                        <rect key="frame" x="30" y="8" width="562" height="73"/>
+                                        <rect key="frame" x="30" y="8" width="540" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="73" id="F9V-Cw-Mpq"/>
                                         </constraints>
@@ -131,13 +131,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.56252981870229013" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="W9n-mw-qOq" firstAttribute="top" secondItem="Cfl-gG-OHE" secondAttribute="bottom" constant="8" id="2Hm-4z-bBT"/>
-                                    <constraint firstItem="W9n-mw-qOq" firstAttribute="leading" secondItem="Ec4-pQ-iSo" secondAttribute="leading" constant="30" id="JFF-qf-pvQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="WeB-O4-2OF" secondAttribute="trailing" constant="30" id="14K-NO-QaD"/>
+                                    <constraint firstItem="WeB-O4-2OF" firstAttribute="top" secondItem="Cfl-gG-OHE" secondAttribute="bottom" constant="8" id="Ed2-cu-GCb"/>
+                                    <constraint firstItem="WeB-O4-2OF" firstAttribute="leading" secondItem="Ec4-pQ-iSo" secondAttribute="leading" constant="30" id="FiN-aZ-nBT"/>
+                                    <constraint firstAttribute="bottom" secondItem="WeB-O4-2OF" secondAttribute="bottom" id="MhC-zB-Toq"/>
                                     <constraint firstItem="Cfl-gG-OHE" firstAttribute="top" secondItem="Ec4-pQ-iSo" secondAttribute="top" constant="8" id="V2T-nt-6xu"/>
-                                    <constraint firstAttribute="bottom" secondItem="W9n-mw-qOq" secondAttribute="bottom" constant="8" id="X9S-om-k4K"/>
                                     <constraint firstItem="Cfl-gG-OHE" firstAttribute="leading" secondItem="Ec4-pQ-iSo" secondAttribute="leading" constant="30" id="fqh-Q0-RNz"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cfl-gG-OHE" secondAttribute="trailing" constant="8" id="iuo-hM-9gu"/>
-                                    <constraint firstAttribute="trailing" secondItem="W9n-mw-qOq" secondAttribute="trailing" constant="8" id="zbL-b1-NKw"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cfl-gG-OHE" secondAttribute="trailing" constant="30" id="iuo-hM-9gu"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -152,7 +152,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bioText" destination="W9n-mw-qOq" id="Anq-ao-WN7"/>
+                        <outlet property="bioText" destination="WeB-O4-2OF" id="W5R-Gx-gEN"/>
                         <outlet property="nameLabel" destination="Cfl-gG-OHE" id="kpe-dM-4Fw"/>
                         <outlet property="profileView" destination="Q17-vC-mY8" id="D8m-a5-oix"/>
                     </connections>

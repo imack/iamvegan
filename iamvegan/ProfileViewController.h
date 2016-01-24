@@ -14,7 +14,7 @@
 
 @property(nonatomic, strong) IBOutlet UIImageView *profileView;
 @property(nonatomic, strong) IBOutlet UILabel *nameLabel;
-@property(nonatomic, strong) IBOutlet UITextView *bioText;
+@property(nonatomic, strong) IBOutlet UILabel *bioText;
 
 @property(nonatomic, strong)  PFUser *vegan;
 
