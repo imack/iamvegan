@@ -10,5 +10,6 @@ target 'iamvegan' do
     pod "PulsingHalo", :git => 'git@github.com:shu223/PulsingHalo.git'
     pod 'MBProgressHUD', '~> 0.9.2'
     pod 'Parse'
+    pod 'KLCPopup'
 end
 

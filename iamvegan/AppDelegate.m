@@ -11,12 +11,15 @@
 #import "VeganHelper.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
 #import <Parse/Parse.h>
+#import "ProfileViewController.h"
+#import <KLCPopup/KLCPopup.h>
 
 @interface AppDelegate ()<CLLocationManagerDelegate>{
     NSDictionary *_userInfo;
     NSUUID *_uuid;
     BOOL _notifyOnDisplay;
     CLLocationManager *_locationManager;
+    PFUser *currentVegan;
 }
 
 @end
@@ -65,15 +68,18 @@
         Vegan *vegan  = [vegans objectAtIndex:0];
         
         switch (buttonIndex) {
-            case 0: {
-                //yes
-                //[VeganHelper performCheckin:vegan];
+            case 1: {
                 
-                break;
+                UIStoryboard *storyboard =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
                 
-            }case 1: {
-                //no
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.vrg.org/nutshell/vegan.htm"]];
+                ProfileViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
+                profileViewController.uuid = [_userInfo objectForKey:@"uuid"];
+                UIView* contentView = profileViewController.view;
+                contentView.frame = CGRectMake(0.0, 0.0, 300.0, 300.0);
+                
+                KLCPopup* popup = [KLCPopup popupWithContentView:contentView];
+                [popup show];
+                //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.vrg.org/nutshell/vegan.htm"]];
                 break;
             }
         }
