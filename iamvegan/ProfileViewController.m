@@ -18,31 +18,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"username" equalTo:self.uuid];
+    self.nameLabel.text = self.vegan[PF_USER_NAME];
+    self.bioText.text = @"I just like animals, think we need to reduce our carbon footprint, and like feeling superior";
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (object){
-            PFUser *user = (PFUser *)object;
-            
-            self.nameLabel.text = user[PF_USER_NAME];
-            self.bioText.text = @"I just like animals, think we need to reduce our carbon footprint, and like feeling superior";
-            
-            PFFile *pictureFile = [user objectForKey:PF_USER_PROFILE];
-            
-            if (pictureFile){
-                [pictureFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-                    if (!error){
-                        UIImage *profileImage = [UIImage imageWithData:data];
-                        [self.profileView setImage:profileImage];
-                    }
-                }];
+    PFFile *pictureFile = [self.vegan objectForKey:PF_USER_PROFILE];
+    
+    if (pictureFile){
+        [pictureFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (!error){
+                UIImage *profileImage = [UIImage imageWithData:data];
+                [self.profileView setImage:profileImage];
             }
-            
-        }
-    }];
-    
-
+        }];
+    }
     
 }
 

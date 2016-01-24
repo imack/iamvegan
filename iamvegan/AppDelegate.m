@@ -55,10 +55,22 @@
         // If the application is in the foreground, we will notify the user of the region's state via an alert.
         _userInfo = notification.userInfo; //don't like this hack, but it'll do for now
         
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@ is a vegan in your presence, would you like to know more?",[_userInfo objectForKey:@"name"]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:nil];
-        [sheet addButtonWithTitle:@"Yes"];
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"username" equalTo:[_userInfo objectForKey:@"uuid"]];
         
-        [sheet showInView: self.window];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+            if (object){
+                PFUser *user = (PFUser *)object;
+                currentVegan = user;
+                
+                UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@ is a vegan in your presence, would you like to know more?",user[PF_USER_NAME]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:nil otherButtonTitles:nil];
+                [sheet addButtonWithTitle:@"Yes"];
+                
+                [sheet showInView: self.window];
+                
+            }
+        }];
+
     }
 }
 
@@ -75,7 +87,7 @@
                 UIStoryboard *storyboard =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
                 
                 ProfileViewController *profileViewController = [storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
-                profileViewController.uuid = [_userInfo objectForKey:@"uuid"];
+                profileViewController.vegan = currentVegan;
                 UIView* contentView = profileViewController.view;
                 contentView.frame = CGRectMake(0.0, 0.0, 300.0, 200.0);
                 

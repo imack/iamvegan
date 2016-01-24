@@ -18,12 +18,11 @@
 
 
 
-+(void) promptVegan:(PFUser*)user{
++(void) promptVegan:(Vegan*)vegan{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertTitle =[NSString stringWithFormat:@"%@ is a Vegan", user[PF_USER_NAME]];
-    notification.alertBody = [NSString stringWithFormat:@"A person named %@ is near you and is a Vegan", user[PF_USER_NAME]];
-    NSDictionary *userInfo = @{@"uuid":user.username, @"name":user[PF_USER_NAME]};
+    notification.alertTitle =[NSString stringWithFormat:@"A Vegan is Nearby"];
+    NSDictionary *userInfo = @{@"uuid":vegan.uuid};
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.userInfo = userInfo;
     
@@ -33,8 +32,7 @@
 +(void) testNotification{
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
-    notification.alertTitle = @"Jane is a Vegan";
-    notification.alertBody = @"A Vegan is near you";
+    notification.alertTitle = @"A Vegan is Nearby";
     NSDate *fromnow = [[NSDate date] dateByAddingTimeInterval:5];
     notification.fireDate = fromnow;
     notification.soundName = UILocalNotificationDefaultSoundName;
@@ -55,27 +53,11 @@
     vegan.uuid = uuid;
     vegan.last_seen = [NSDate date];
     
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (object){
-            PFUser *user = (PFUser *)object;
-            [VeganHelper promptVegan:user];
-        } else {
-            //error state
-            Vegan *vegan = [Vegan MR_createEntity];
-            vegan.uuid = uuid;
-            vegan.last_seen = [NSDate date];
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
-                //nooop
-            }];
-        }
-    }];
+    [VeganHelper promptVegan:vegan];
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
         //nooop
     }];
-    
-
 }
 
 

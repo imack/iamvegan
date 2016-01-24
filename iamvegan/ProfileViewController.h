@@ -16,6 +16,6 @@
 @property(nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property(nonatomic, strong) IBOutlet UITextView *bioText;
 
-@property(nonatomic, strong)  NSString *uuid;
+@property(nonatomic, strong)  PFUser *vegan;
 
 @end
